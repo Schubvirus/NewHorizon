@@ -114,6 +114,11 @@
   resolved "https://registry.yarnpkg.com/@rbxts/rust-classes/-/rust-classes-0.11.2.tgz#af530cd96a1950d76722519a848a38a509df19e1"
   integrity sha512-aYbpYxtu1Gn9/r4tqA2EvH1WGHAUtzarTlztZiuKYDMATXHu/aFjJZvCLdFc+w3KVPCRPg8lhJexwsEAfZtRVg==
 
+"@rbxts/services@^1.5.1":
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/@rbxts/services/-/services-1.5.1.tgz#4536a87932f28797507ed591f0061277c52ea77f"
+  integrity sha512-SRtfIjga0K4YYSXRpK+eH3kcTq7ZXo9OHOt0jszaOOoEOIJloMGlyuRPqesPHyhveh2AMXAZr3TYbRMSD+u+kQ==
+
 "@rbxts/t@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@rbxts/t/-/t-3.1.0.tgz#a8f2d99d5ce1b0cc7f2a61e0a93ad4d872764089"

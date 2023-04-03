@@ -24,6 +24,7 @@
     "@rbxts/netbuilder": "^0.6.1",
     "@rbxts/roact": "^1.4.4-ts.0",
     "@rbxts/roact-hooked": "^2.3.3",
+    "@rbxts/services": "^1.5.1",
     "@rbxts/t": "^3.1.0"
   }
 }
