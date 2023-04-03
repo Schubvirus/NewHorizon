@@ -18,5 +18,12 @@
     "eslint-plugin-roblox-ts": "^0.0.35",
     "prettier": "^2.8.7",
     "typescript": "^5.0.3"
+  },
+  "dependencies": {
+    "@rbxts/make": "^1.0.6",
+    "@rbxts/netbuilder": "^0.6.1",
+    "@rbxts/roact": "^1.4.4-ts.0",
+    "@rbxts/roact-hooked": "^2.3.3",
+    "@rbxts/t": "^3.1.0"
   }
 }
