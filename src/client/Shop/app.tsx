@@ -2,6 +2,7 @@ import Roact from "@rbxts/roact";
 import { useRef, withHooks } from "@rbxts/roact-hooked";
 import { ReplicatedStorage, TweenService } from "@rbxts/services";
 import ItemCard from "./Components/ItemCard";
+import CloseButton from "client/Components/CloseButton";
 
 function App() {
 	const strokeColor = Color3.fromRGB(255, 88, 219);
@@ -30,55 +31,15 @@ function App() {
 						Position={new UDim2(0.01, 0, 0, 0)}
 						TextScaled={true}
 						TextXAlignment={"Left"}
-						TextColor3={Color3.fromRGB(255, 88, 219)}
+						TextColor3={Color3.fromRGB(255, 255, 255)}
 						BackgroundTransparency={1}
 					/>
-					<frame
-						Size={new UDim2(0.1, 0, 0.5, 0)}
-						Position={new UDim2(0.88, 0, 0.25, 0)}
-						BackgroundColor3={closeButtonColor}
-						BackgroundTransparency={1}
-						Ref={buttonFrameRef}
-					>
-						<uistroke LineJoinMode={"Round"} Thickness={2} Color={closeButtonColor} />
-						<uicorner />
-						<textbutton
-							Text="Close"
-							TextScaled={true}
-							Size={new UDim2(1, 0, 1, 0)}
-							BackgroundTransparency={1}
-							TextColor3={closeButtonColor}
-							Ref={textButtonRef}
-							Event={{
-								MouseButton1Click: () => {
-									game.GetService("Players")
-										.LocalPlayer.WaitForChild("PlayerGui")
-										.WaitForChild("Shop")
-										.Destroy();
-								},
-								MouseEnter: () => {
-									const frame = buttonFrameRef.getValue() as Frame;
-									const textButton = textButtonRef.getValue() as TextButton;
-									TweenService.Create(frame, new TweenInfo(0.1), {
-										BackgroundTransparency: 0,
-									}).Play();
-									TweenService.Create(textButton, new TweenInfo(0.1), {
-										TextColor3: Color3.fromRGB(255, 255, 255),
-									}).Play();
-								},
-								MouseLeave: () => {
-									const frame = buttonFrameRef.getValue() as Frame;
-									const textButton = textButtonRef.getValue() as TextButton;
-									TweenService.Create(frame, new TweenInfo(0.1), {
-										BackgroundTransparency: 1,
-									}).Play();
-									TweenService.Create(textButton, new TweenInfo(0.1), {
-										TextColor3: closeButtonColor,
-									}).Play();
-								},
-							}}
-						></textbutton>
-					</frame>
+					<CloseButton
+						size={new UDim2(0.1, 0, 0.5, 0)}
+						position={new UDim2(0.88, 0, 0.25, 0)}
+						closeButtonColor={closeButtonColor}
+						uiName="Shop"
+					/>
 				</frame>
 				<frame
 					Size={new UDim2(0.96, 0, 0.86, 0)}
