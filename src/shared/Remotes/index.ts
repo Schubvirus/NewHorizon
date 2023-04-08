@@ -9,6 +9,8 @@ export = new NetBuilder()
 			.BindDefinition(new DefinitionBuilder("OpenBank").Build())
 			.BindDefinition(new DefinitionBuilder("Withdraw").SetArguments(t.number).SetReturn(t.string).Build())
 			.BindDefinition(new DefinitionBuilder("GetBalance").SetReturn(t.table).Build())
+			.BindDefinition(new DefinitionBuilder("BuyMoney").SetArguments(t.number).SetReturn(t.string).Build())
+			.BindDefinition(new DefinitionBuilder("OpenShop").Build())
 			.BindDefinition(
 				new DefinitionBuilder("Transfer").SetArguments(t.Instance, t.number).SetReturn(t.string).Build(),
 			)

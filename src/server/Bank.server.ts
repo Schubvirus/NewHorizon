@@ -1,4 +1,4 @@
-import { Players, Workspace } from "@rbxts/services";
+import { Players, Workspace, MarketplaceService } from "@rbxts/services";
 import Definitions from "shared/Remotes";
 import MoneyModule from "shared/Money";
 import ServerMoneyModule from "shared/Money/server";
@@ -30,17 +30,61 @@ Definitions.Server.BankingSystem.Transfer.SetCallback((player, target: Instance,
 	return "Invalid amount!";
 });
 
+const moneyPacks = MoneyModule.moneyPacks;
+
+MarketplaceService.ProcessReceipt = (receiptInfo) => {
+	const player = Players.GetPlayerByUserId(receiptInfo.PlayerId);
+	if (player) {
+		const pack = moneyPacks.find((pack) => pack.id === receiptInfo.ProductId);
+		if (pack) {
+			const Playerdata = player.WaitForChild("Playerdata") as Folder;
+			const Wallet = Playerdata.WaitForChild("Wallet") as NumberValue;
+			Wallet.Value += pack.amount;
+			return Enum.ProductPurchaseDecision.PurchaseGranted;
+		}
+	}
+	return Enum.ProductPurchaseDecision.NotProcessedYet;
+};
+
+Definitions.Server.BankingSystem.BuyMoney.SetCallback((player, id) => {
+	const pack = moneyPacks.find((pack) => pack.id === id);
+	if (pack) {
+		const product = MarketplaceService.GetProductInfo(pack.id);
+		if (product) {
+			MarketplaceService.PromptProductPurchase(player, pack.id);
+			return "Prompted Purchase!";
+		}
+	}
+	return "Failed to buy money!";
+});
+
+Definitions.Server.BankingSystem.OpenShop.Connect((player) => {
+	print("OpenShop");
+	return;
+});
+
 Definitions.Server.BankingSystem.OpenBank.Connect((player) => {
 	print("OpenBank");
 	return;
 });
+
+/* task.spawn(() => {
+	for (const item of Workspace.GetChildren()) {
+		if (item.IsA("MeshPart") && item.Name === "Open_atm" && item.FindFirstChild("ProximityPrompt")) {
+			const prompt = item.FindFirstChild("ProximityPrompt") as ProximityPrompt;
+			prompt.Triggered.Connect((plr) => {
+				Definitions.Server.BankingSystem.OpenBank.Send(plr);
+			});
+		}
+	}
+}); */
 
 task.spawn(() => {
 	for (const item of Workspace.GetChildren()) {
 		if (item.IsA("MeshPart") && item.Name === "Open_atm" && item.FindFirstChild("ProximityPrompt")) {
 			const prompt = item.FindFirstChild("ProximityPrompt") as ProximityPrompt;
 			prompt.Triggered.Connect((plr) => {
-				Definitions.Server.BankingSystem.OpenBank.Send(plr);
+				Definitions.Server.BankingSystem.OpenShop.Send(plr);
 			});
 		}
 	}

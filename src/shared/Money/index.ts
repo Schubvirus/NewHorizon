@@ -42,11 +42,56 @@ function transfer(player: Player, target: Instance, amount: number) {
 	return "Transfer successful!";
 }
 
+interface MoneyPack {
+	amount: number;
+	price: number;
+	id: number;
+}
+
+const moneyPacks: MoneyPack[] = [
+	{
+		amount: 2500,
+		price: 100,
+		id: 1511731964,
+	},
+	{
+		amount: 5000,
+		price: 200,
+		id: 1514628366,
+	},
+	{
+		amount: 10000,
+		price: 400,
+		id: 1514628620,
+	},
+	{
+		amount: 20000,
+		price: 780,
+		id: 1514628884,
+	},
+	{
+		amount: 30000,
+		price: 1160,
+		id: 1514629195,
+	},
+	{
+		amount: 40000,
+		price: 1550,
+		id: 1514629488,
+	},
+	{
+		amount: 50000,
+		price: 1930,
+		id: 1514629774,
+	},
+];
+
 const MoneyModule = {
 	deposit,
 	withdraw,
 	getBalance,
 	transfer,
+	moneyPacks,
 };
 
 export default MoneyModule;
