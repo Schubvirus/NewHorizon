@@ -1,6 +1,7 @@
 import Roact from "@rbxts/roact";
 import { useState, withHooks } from "@rbxts/roact-hooked";
 import { Players } from "@rbxts/services";
+import Defintions from "shared/Remotes";
 import CloseButton from "client/Components/CloseButton";
 import Deposit from "./Components/Deposit";
 import Select from "./Components/Select";
@@ -77,6 +78,22 @@ function App() {
 							TextScaled={true}
 							Text={`Bank: ${Bank}€`}
 						/>
+						<textbutton
+							Text={"Buy Money"}
+							TextColor3={Color3.fromRGB(255, 255, 255)}
+							TextScaled={true}
+							BackgroundColor3={Color3.fromRGB(20, 20, 20)}
+							BackgroundTransparency={0.2}
+							Size={new UDim2(0.9, 0, 0.15, 0)}
+							Event={{
+								MouseButton1Click: () => {
+									Defintions.Client.BankingSystem.OpenShop.Send();
+									Players.LocalPlayer.WaitForChild("PlayerGui").WaitForChild("Bank").Destroy();
+								},
+							}}
+						>
+							<uicorner CornerRadius={new UDim(0, 5)} />
+						</textbutton>
 						{currentMode !== "Select" && (
 							<textbutton
 								Text={"Back"}

@@ -59,32 +59,21 @@ Definitions.Server.BankingSystem.BuyMoney.SetCallback((player, id) => {
 });
 
 Definitions.Server.BankingSystem.OpenShop.Connect((player) => {
-	print("OpenShop");
+	Definitions.Server.BankingSystem.OpenShop.Send(player);
 	return;
 });
 
 Definitions.Server.BankingSystem.OpenBank.Connect((player) => {
-	print("OpenBank");
+	Definitions.Server.BankingSystem.OpenBank.Send(player);
 	return;
 });
-
-/* task.spawn(() => {
-	for (const item of Workspace.GetChildren()) {
-		if (item.IsA("MeshPart") && item.Name === "Open_atm" && item.FindFirstChild("ProximityPrompt")) {
-			const prompt = item.FindFirstChild("ProximityPrompt") as ProximityPrompt;
-			prompt.Triggered.Connect((plr) => {
-				Definitions.Server.BankingSystem.OpenBank.Send(plr);
-			});
-		}
-	}
-}); */
 
 task.spawn(() => {
 	for (const item of Workspace.GetChildren()) {
 		if (item.IsA("MeshPart") && item.Name === "Open_atm" && item.FindFirstChild("ProximityPrompt")) {
 			const prompt = item.FindFirstChild("ProximityPrompt") as ProximityPrompt;
 			prompt.Triggered.Connect((plr) => {
-				Definitions.Server.BankingSystem.OpenShop.Send(plr);
+				Definitions.Server.BankingSystem.OpenBank.Send(plr);
 			});
 		}
 	}
