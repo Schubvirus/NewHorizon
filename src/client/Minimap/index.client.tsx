@@ -11,4 +11,4 @@ function mountGui() {
 	Roact.mount(<App />, playerGui, "Minimap");
 }
 
-mountGui();
+//mountGui();
