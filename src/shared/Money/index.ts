@@ -2,7 +2,7 @@ function deposit(player: Player, amount: number) {
 	const playerData = player.FindFirstChild("Playerdata") as Folder;
 	const euro = playerData.FindFirstChild("Wallet") as NumberValue;
 	const bank = playerData.FindFirstChild("Bank") as NumberValue;
-	if (amount > euro.Value) {
+	if (amount > euro.Value || amount < 0) {
 		return "You don't have enough money!";
 	}
 	euro.Value -= amount;
@@ -14,7 +14,7 @@ function withdraw(player: Player, amount: number) {
 	const playerData = player.FindFirstChild("Playerdata") as Folder;
 	const euro = playerData.FindFirstChild("Wallet") as NumberValue;
 	const bank = playerData.FindFirstChild("Bank") as NumberValue;
-	if (amount > bank.Value) {
+	if (amount > bank.Value || amount < 0) {
 		return "You don't have enough money!";
 	}
 	euro.Value += amount;
@@ -34,7 +34,7 @@ function transfer(player: Player, target: Instance, amount: number) {
 	const targetData = target.FindFirstChild("Playerdata") as Folder;
 	const bank = playerData.FindFirstChild("Bank") as NumberValue;
 	const targetBank = targetData.FindFirstChild("Bank") as NumberValue;
-	if (amount > bank.Value) {
+	if (amount > bank.Value || amount < 0) {
 		return "You don't have enough money!";
 	}
 	bank.Value -= amount;
