@@ -16,4 +16,28 @@ export = new NetBuilder()
 			)
 			.AsNamespace(),
 	)
+	.BindNamespace(
+		"FractionSystem",
+		new NetBuilder()
+			.BindDefinition(new DefinitionBuilder("CreateFraction").SetArguments(t.string).SetReturn(t.string).Build())
+			.BindDefinition(
+				new DefinitionBuilder("InvitePlayer").SetArguments(t.Instance, t.string).SetReturn(t.string).Build(),
+			)
+			.BindDefinition(new DefinitionBuilder("OpenInviteMenu").SetArguments(t.Instance, t.string).Build())
+			.BindDefinition(
+				new DefinitionBuilder("KickPlayer").SetArguments(t.Instance, t.string).SetReturn(t.string).Build(),
+			)
+			.BindDefinition(new DefinitionBuilder("LeaveFraction").SetArguments(t.string).Build())
+			.BindDefinition(
+				new DefinitionBuilder("DepositInFractionBank").SetArguments(t.number).SetReturn(t.string).Build(),
+			)
+			.BindDefinition(
+				new DefinitionBuilder("WithdrawFromFractionBank").SetArguments(t.number).SetReturn(t.string).Build(),
+			)
+			.BindDefinition(new DefinitionBuilder("GetFractionBalance").SetReturn(t.number).Build())
+			.BindDefinition(new DefinitionBuilder("GetFractionMembers").SetReturn(t.table).Build())
+			.BindDefinition(new DefinitionBuilder("GetFractionOwner").SetReturn(t.Instance).Build())
+			.BindDefinition(new DefinitionBuilder("GetFractionName").SetReturn(t.string).Build())
+			.AsNamespace(),
+	)
 	.Build();
