@@ -40,4 +40,18 @@ export = new NetBuilder()
 			.BindDefinition(new DefinitionBuilder("GetFractionName").SetReturn(t.string).Build())
 			.AsNamespace(),
 	)
+	.BindNamespace(
+		"Teams",
+		new NetBuilder()
+			.BindDefinition(new DefinitionBuilder("ChangeTeam").SetArguments(t.Instance).Build())
+			.AsNamespace(),
+	)
+	.BindNamespace(
+		"PlayerActions",
+		new NetBuilder()
+			.BindDefinition(new DefinitionBuilder("RevivePlayer").SetArguments(t.Instance).Build())
+			.BindDefinition(new DefinitionBuilder("Respawn").Build())
+			.BindDefinition(new DefinitionBuilder("CreateRevivePrompt").SetArguments(t.Instance).Build())
+			.AsNamespace(),
+	)
 	.Build();
